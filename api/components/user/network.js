@@ -9,6 +9,8 @@ router.get('/', list)
 router.get('/:id', get)
 router.post('/', upsert)
 
+
+
 async function list(req, res) {
     controller.list().then((list) => {
         response.success(req, res, list, 200)
@@ -17,6 +19,25 @@ async function list(req, res) {
     })
 }
 
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Obtiene un usuario por ID
+ *     description: Retorna un usuario basado en su ID.
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID del usuario
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *       404:
+ *         description: Usuario no encontrado
+ */
 async function get(req, res) {
     controller.get(req.params.id).then((user) => {
         response.success(req, res, user, 200)
@@ -26,11 +47,13 @@ async function get(req, res) {
 }
 
 async function upsert(req, res) {
-    controller.upsert(req.body).then((user) => {
-        response.success(req, res, user, 200)
-    }).catch((err) => {
-        response.error(req, res, err.message, 500)
-    })
+    controller.upsert(req.body)
+        .then((user) => {
+            response.success(req, res, user, 201)
+        })
+        /*.catch((err) => {
+            response.error(req, res, err.message, 500)
+        })*/
 }
 
 
