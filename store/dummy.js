@@ -20,8 +20,6 @@ async function upsert(table, data) {
     }
 
     db[table].push(data)
-
-    console.log(db)
 }
 
 async function remove(table, id) {
@@ -31,7 +29,6 @@ async function remove(table, id) {
 async function query(table, q) {
     let col = await list(table)
 
-    console.log(col)
     let keys = Object.keys(q)
     let key = keys[0]
 
