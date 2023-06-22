@@ -6,10 +6,15 @@ module.exports = checkAuth = (action) => {
             case 'update':
                 const owner = req.body.id;
                 auth.check.own(req, owner);
-                next();
-                break;
+                next()
+                break
+
+            case 'logged':
+                auth.check.logged(req);
+                next()
+                break
             default:
-                next();
+                next()
         }
     }
 

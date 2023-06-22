@@ -12,9 +12,7 @@ function login(req, res, next) {
         .then(token => {
             response.success(req, res, token, 200)
         })
-        .catch((err) => {
-            response.error(req, res, 'Información inválida', 400)
-        })
+        .catch(next)
 }
 
 

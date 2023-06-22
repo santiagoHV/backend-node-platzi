@@ -12,11 +12,12 @@ const check = {
     own: (req, owner) => {
         const decoded = decodeHeader(req)
 
-        console.log(decoded)
-
         if (decoded.id !== owner) {
             throw error('Unauthorized', 401)
         }
+    },
+    logged: (req) => {
+        decodeHeader(req)
     }
 }
 
@@ -31,11 +32,11 @@ const decodeHeader = (req) => {
 
 const getToken = (authorization) => {
     if (!authorization) {
-        throw error('No token')
+        throw error('No token', 401)
     }
 
     if (authorization.indexOf('Bearer ') == -1) {
-        throw error('Invalid format')
+        throw error('Invalid format', 403)
     }
 
     return authorization.replace('Bearer ', '')
