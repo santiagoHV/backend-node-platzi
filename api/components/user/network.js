@@ -80,10 +80,6 @@ async function getFollowing(req, res, next) {
 }
 
 
-
-
-
-
 // router.delete('/', async(req, res) => {
 //     controller.remove(req.params.id).then((message) => {
 //         response.success(req, res, message, 200)
