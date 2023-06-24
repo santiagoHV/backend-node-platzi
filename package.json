@@ -5,7 +5,11 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon api/index.js"
+        "dev": "nodemon api/index.js",
+        "start": "node api/index.js",
+        "start:db:container": "docker-compose up -d",
+        "stop:db:container": "docker-compose down",
+        "start:db:service": "nodemon mysql/index.js"
     },
     "author": "",
     "license": "ISC",
