@@ -11,7 +11,8 @@ module.exports = function(injectedStore) {
     }
 
     const login = async(username, password) => {
-        const data = await store.query(TABLE, { username: username })
+        let data = await store.query(TABLE, { username: username })
+        data = data[0]
 
         return bcrypt.compare(password, data.password)
             .then(areEqual => {

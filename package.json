@@ -9,7 +9,8 @@
         "start": "node api/index.js",
         "start:db:container": "docker-compose up -d",
         "stop:db:container": "docker-compose down",
-        "start:db:service": "nodemon mysql/index.js"
+        "start:db:service": "nodemon mysql/index.js",
+        "start:post:service": "nodemon post/index.js"
     },
     "author": "",
     "license": "ISC",
@@ -22,6 +23,7 @@
         "mysql": "^2.18.1",
         "mysql2": "^3.4.0",
         "nanoid": "^2.1.7",
+        "request": "^2.88.2",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^4.6.3"
     }

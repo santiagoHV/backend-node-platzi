@@ -17,7 +17,7 @@ const check = {
         }
     },
     logged: (req) => {
-        decodeHeader(req)
+        return decodeHeader(req)
     }
 }
 

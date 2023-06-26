@@ -95,6 +95,7 @@ const query = (table, query, join) => {
         joinQuery = `JOIN ${key} ON ${table}.${val} = ${key}.id`
     }
 
+    console.log(`SELECT * FROM ${table} ${joinQuery} WHERE ${table}.?`, query)
     return new Promise((resolve, reject) => {
         connection.query(`SELECT * FROM ${table} ${joinQuery} WHERE ${table}.?`, query, (err, res) => {
             if (err) return reject(err)
