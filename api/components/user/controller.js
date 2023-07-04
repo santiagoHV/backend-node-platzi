@@ -5,14 +5,31 @@ const auth = require('../auth');
 const TABLE_USER = 'user';
 const TABLE_FOLLOW = 'follow';
 
-module.exports = function(injectedStore) {
-    let store = injectedStore;
+module.exports = function(injectedStore, injectedCache) {
+    let store = injectedStore
+    let cache = injectedCache
+
     if (!store) {
         store = require('../../../store/dummy');
     }
 
-    const list = () => {
-        return store.list(TABLE_USER);
+    if (!cache) {
+        cache = require('../../../store/dummy')
+            //usar base de datos real
+    }
+
+    const list = async() => {
+        let users = await cache.list(TABLE_USER)
+
+        if (!users) {
+            console.log('No cached data')
+            users = await store.list(TABLE_USER)
+            cache.upsert(TABLE_USER, users)
+        } else {
+            console.log('Cached data')
+        }
+
+        return users
     }
 
     const get = (id) => {
